@@ -61,11 +61,11 @@ namespace GuTenTak.KogMaw
                         {
                             R.Cast(Rp.CastPosition);
                         }
-                        if (RTarget.HealthPercent <= 50 && ModesMenu1["LogicRn"].Cast<ComboBox>().CurrentValue == 1)
+                        if (RTarget.HealthPercent <= 60 && ModesMenu1["LogicRn"].Cast<ComboBox>().CurrentValue == 1)
                         {
                             R.Cast(Rp.CastPosition);
                         }
-                        if (RTarget.HealthPercent <= 25 && ModesMenu1["LogicRn"].Cast<ComboBox>().CurrentValue == 2)
+                        if (RTarget.HealthPercent <= 40 && ModesMenu1["LogicRn"].Cast<ComboBox>().CurrentValue == 2)
                         {
                             R.Cast(Rp.CastPosition);
                         }
