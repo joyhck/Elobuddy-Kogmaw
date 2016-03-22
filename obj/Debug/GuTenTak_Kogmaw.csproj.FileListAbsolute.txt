@@ -1,0 +1,12 @@
+E:\Users\smart\Desktop\ez\Elobuddy - Kogmaw\bin\Release\GuTenTak_KogMaw.exe.config
+E:\Users\smart\Desktop\ez\Elobuddy - Kogmaw\bin\Release\GuTenTak_KogMaw.exe
+E:\Users\smart\Desktop\ez\Elobuddy - Kogmaw\bin\Release\GuTenTak_KogMaw.pdb
+E:\Users\smart\Desktop\ez\Elobuddy - Kogmaw\bin\Release\EloBuddy.dll
+E:\Users\smart\Desktop\ez\Elobuddy - Kogmaw\bin\Release\EloBuddy.SDK.dll
+E:\Users\smart\Desktop\ez\Elobuddy - Kogmaw\bin\Release\SharpDX.Direct3D9.dll
+E:\Users\smart\Desktop\ez\Elobuddy - Kogmaw\bin\Release\SharpDX.dll
+E:\Users\smart\Desktop\ez\Elobuddy - Kogmaw\bin\Release\Newtonsoft.Json.dll
+E:\Users\smart\Desktop\ez\Elobuddy - Kogmaw\obj\Debug\GuTenTak_KogMaw.Properties.Resources.resources
+E:\Users\smart\Desktop\ez\Elobuddy - Kogmaw\obj\Debug\GuTenTak_Kogmaw.csproj.GenerateResource.Cache
+E:\Users\smart\Desktop\ez\Elobuddy - Kogmaw\obj\Debug\GuTenTak_KogMaw.exe
+E:\Users\smart\Desktop\ez\Elobuddy - Kogmaw\obj\Debug\GuTenTak_KogMaw.pdb
