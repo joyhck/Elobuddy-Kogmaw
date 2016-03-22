@@ -141,8 +141,6 @@ namespace GuTenTak.KogMaw
                 ModesMenu2.Add("JRStack", new Slider("JungleClear R stack limit", 2, 1, 6));
 
                 ModesMenu3 = Menu.AddSubMenu("Misc", "Modes3KogMaw");
-                ModesMenu3.AddLabel("Misc Configs");
-                ModesMenu3.Add("AntiGap", new CheckBox("Use W for Anti-Gapcloser", true));
                 ModesMenu3.AddLabel("Flee Configs");
                 ModesMenu3.Add("FleeR", new CheckBox("Use R on Flee", true));
                 ModesMenu3.Add("FleeE", new CheckBox("Use E on Flee", true));

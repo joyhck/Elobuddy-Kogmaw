@@ -532,18 +532,6 @@ namespace GuTenTak.KogMaw
 
         internal static void Gapcloser_OnGapCloser(AIHeroClient sender, Gapcloser.GapcloserEventArgs gapcloser)
         {
-            if (Program.ModesMenu3["AntiGap"].Cast<CheckBox>().CurrentValue)
-            {
-                string[] herogapcloser =
-                {
-                "Braum", "Ekko", "Elise", "Fiora", "Kindred", "Lucian", "Yi", "Nidalee", "Quinn", "Riven", "Shaco", "Sion", "Vayne", "Yasuo", "Graves", "Azir", "Gnar", "Irelia", "Kalista"
-                };
-                if (sender.IsEnemy && sender.GetAutoAttackRange() >= ObjectManager.Player.Distance(gapcloser.End) && !herogapcloser.Any(sender.ChampionName.Contains))
-                {
-                    var diffGapCloser = gapcloser.End - gapcloser.Start;
-                    W.Cast(ObjectManager.Player.ServerPosition + diffGapCloser);
-                }
-            }
         }
 
         public static void KillSteal()
