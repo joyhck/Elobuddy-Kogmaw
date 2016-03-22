@@ -91,7 +91,10 @@ namespace GuTenTak.KogMaw
                     if (!QTarget.IsValid()) return;
                     if (Q.IsInRange(QTarget) && Q.IsReady() && useQ && Qp.HitChance >= HitChance.High && !QTarget.IsInvulnerable)
                     {
-                        Q.Cast(Qp.CastPosition);
+                       if (_Player.Mana >= 80)
+                        {
+                          Q.Cast(Qp.CastPosition);
+                        }
                     }
                 }
                 var ETarget = TargetSelector.GetTarget(E.Range, DamageType.Mixed);
@@ -227,7 +230,7 @@ namespace GuTenTak.KogMaw
                 var minions = EntityManager.MinionsAndMonsters.EnemyMinions.Where(t => t.IsEnemy && !t.IsDead && t.IsValid && !t.IsInvulnerable && t.IsInRange(Player.Instance.Position, Q.Range));
                 foreach (var m in minions)
                 {
-                    if (Q.GetPrediction(m).CollisionObjects.Where(t => t.IsEnemy && !t.IsDead && t.IsValid && !t.IsInvulnerable).Count() >= 3)
+                    if (Q.GetPrediction(m).CollisionObjects.Where(t => t.IsEnemy && !t.IsDead && t.IsValid && !t.IsInvulnerable).Count() >= 0)
                     {
                         Q.Cast(m);
                         break;
@@ -237,7 +240,7 @@ namespace GuTenTak.KogMaw
             if (R.IsReady() && ModesMenu2["FarmR"].Cast<CheckBox>().CurrentValue && Program._Player.ManaPercent >= Program.ModesMenu2["ManaLR"].Cast<Slider>().CurrentValue)
             {
                 var minions = EntityManager.MinionsAndMonsters.EnemyMinions.Where(t => t.IsEnemy && !t.IsDead && t.IsValid && !t.IsInvulnerable && t.IsInRange(Player.Instance.Position, Q.Range)).OrderBy(t => t.Health);
-                if (minions.Count() > 0)
+                if (minions.Count() > 2)
                 {
                     if (PlayerInstance.GetBuffCount("kogmawlivingartillerycost") < ModesMenu2["FRStack"].Cast<Slider>().CurrentValue)
                     {

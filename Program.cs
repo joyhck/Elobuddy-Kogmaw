@@ -76,10 +76,10 @@ namespace GuTenTak.KogMaw
                     return;
                 }
 
-                Q = new Spell.Skillshot(SpellSlot.Q, 950, SkillShotType.Linear, 250, 1650, 70);
+                Q = new Spell.Skillshot(SpellSlot.Q, 1000, SkillShotType.Linear, 250, 1650, 70);
                 Q.AllowedCollisionCount = 0;
                 W = new Spell.Active(SpellSlot.W, (uint)PlayerInstance.GetAutoAttackRange());
-                E = new Spell.Skillshot(SpellSlot.E, 650, SkillShotType.Linear, 500, 1400, 120);
+                E = new Spell.Skillshot(SpellSlot.E, 1200, SkillShotType.Linear, 500, 1400, 120);
                 E.AllowedCollisionCount = int.MaxValue;
                 R = new Spell.Skillshot(SpellSlot.R, 1800, SkillShotType.Circular, 1200, int.MaxValue, 120);
                 R.AllowedCollisionCount = int.MaxValue;
@@ -99,10 +99,11 @@ namespace GuTenTak.KogMaw
                 ModesMenu1.AddSeparator();
                 ModesMenu1.AddLabel("Combo Configs");
                 ModesMenu1.Add("ComboQ", new CheckBox("Use Q on Combo", true));
+                ModesMenu1.AddLabel("Use Q Mana >= 80");
                 ModesMenu1.Add("ComboW", new CheckBox("Use W on Combo", true));
                 ModesMenu1.Add("ComboE", new CheckBox("Use E on Combo", true));
                 ModesMenu1.Add("ComboR", new CheckBox("Use R on Combo", true));
-                ModesMenu1.Add("LogicRn", new ComboBox(" Use Enemy Health % <= ", 1, "100%", "50%", "25%"));
+                ModesMenu1.Add("LogicRn", new ComboBox(" Use R Enemy Health % <= ", 1, "100%", "50%", "25%"));
                 ModesMenu1.Add("ManaCE", new Slider("Use E Mana %", 30));
                 ModesMenu1.Add("ManaCR", new Slider("Use R Mana %", 80));
                 ModesMenu1.Add("CRStack", new Slider("Combo R stack limit", 3, 1, 6));
@@ -115,9 +116,9 @@ namespace GuTenTak.KogMaw
                 ModesMenu1.AddLabel("Harass Configs");
                 ModesMenu1.Add("HarassQ", new CheckBox("Use Q on Harass", true));
                 ModesMenu1.Add("HarassE", new CheckBox("Use E on Harass", true));
-                ModesMenu1.Add("ManaHE", new Slider("Mana %", 60));
                 ModesMenu1.Add("HarassR", new CheckBox("Use R on Harass", true));
-                ModesMenu1.Add("ManaHR", new Slider("Mana %", 60));
+                ModesMenu1.Add("ManaHE", new Slider("Use E Mana %", 60));
+                ModesMenu1.Add("ManaHR", new Slider("Use R Mana %", 60));
                 ModesMenu1.Add("HRStack", new Slider("Harass R stack limit", 1, 1, 6));
                 ModesMenu1.AddSeparator();
                 ModesMenu1.AddLabel("Kill Steal Configs");
@@ -144,9 +145,9 @@ namespace GuTenTak.KogMaw
                 ModesMenu3.Add("AntiGap", new CheckBox("Use W for Anti-Gapcloser", true));
                 ModesMenu3.AddLabel("Flee Configs");
                 ModesMenu3.Add("FleeR", new CheckBox("Use R on Flee", true));
+                ModesMenu3.Add("FleeE", new CheckBox("Use E on Flee", true));
                 ModesMenu3.Add("ManaFlR", new Slider("R Mana %", 35));
                 ModesMenu3.Add("FlRStack", new Slider("Flee R stack limit", 2, 1, 6));
-                ModesMenu3.Add("FleeE", new CheckBox("Use E on Flee", true));
 
                 ModesMenu3.AddLabel("Item Usage on Combo");
                 ModesMenu3.Add("useYoumuu", new CheckBox("Use Youmuu", true));
@@ -252,8 +253,7 @@ namespace GuTenTak.KogMaw
             {
                 var AutoHarass = ModesMenu1["AutoHarass"].Cast<CheckBox>().CurrentValue;
                 var ManaAuto = ModesMenu1["ManaAuto"].Cast<Slider>().CurrentValue;
-
-                Common.Skinhack();
+                Common.KillSteal();
 
                 if (AutoHarass && ManaAuto <= _Player.ManaPercent)
                     {
@@ -303,7 +303,7 @@ namespace GuTenTak.KogMaw
         {
             W = new Spell.Active(SpellSlot.W, (uint)(565 + 60 + W.Level * 30 + 65));
             R = new Spell.Skillshot(SpellSlot.R, (uint)(900 + R.Level * 300), SkillShotType.Circular, 1500, int.MaxValue, 225);
-            Common.KillSteal();
+            Common.Skinhack();
         }
         public static bool CanMove(float extraWindup)
         {
