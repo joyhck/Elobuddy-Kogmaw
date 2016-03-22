@@ -103,7 +103,7 @@ namespace GuTenTak.KogMaw
                 ModesMenu1.Add("ComboW", new CheckBox("Use W on Combo", true));
                 ModesMenu1.Add("ComboE", new CheckBox("Use E on Combo", true));
                 ModesMenu1.Add("ComboR", new CheckBox("Use R on Combo", true));
-                ModesMenu1.Add("LogicRn", new ComboBox(" Use R Enemy Health % <= ", 1, "100%", "60%", "40%"));
+                ModesMenu1.Add("LogicRn", new ComboBox(" Use R Enemy Health % <= ", 1, "100%", "55%", "30%"));
                 ModesMenu1.Add("ManaCE", new Slider("Use E Mana %", 30));
                 ModesMenu1.Add("ManaCR", new Slider("Use R Mana %", 80));
                 ModesMenu1.Add("CRStack", new Slider("Combo R stack limit", 3, 1, 6));
