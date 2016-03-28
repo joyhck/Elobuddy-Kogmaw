@@ -66,7 +66,6 @@ namespace GuTenTak.KogMaw
             Game.OnTick += OnTick;
             Gapcloser.OnGapcloser += Common.Gapcloser_OnGapCloser;
             Game.OnUpdate += Common.zigzag;
-            Obj_AI_Base.OnProcessSpellCast += Obj_AI_Base_OnProcessSpellCast;
             SkinBase = Player.Instance.SkinId;
             // Item
             try
@@ -297,20 +296,6 @@ namespace GuTenTak.KogMaw
             W = new Spell.Active(SpellSlot.W, (uint)(565 + 60 + W.Level * 30 + 65));
             R = new Spell.Skillshot(SpellSlot.R, (uint)(900 + R.Level * 300), SkillShotType.Circular, 1500, int.MaxValue, 225);
             Common.Skinhack();
-        }
-        public static bool CanMove(float extraWindup)
-        {
-            if (LastAATick <= Environment.TickCount)
-                return (Environment.TickCount + Game.Ping / 2 >= LastAATick + PlayerInstance.AttackCastDelay * 1000 + extraWindup);
-            return false;
-        }
-
-        private static void Obj_AI_Base_OnProcessSpellCast(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
-        {
-            if (sender.IsMe)
-            {
-                LastAATick = Environment.TickCount;
-            }
         }
 
     }

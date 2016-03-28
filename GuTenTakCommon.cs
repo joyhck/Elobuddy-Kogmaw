@@ -42,11 +42,6 @@ namespace GuTenTak.KogMaw
 
         public static void Combo()
         {
-            //if (ModesMenu1["useItem"].Cast<CheckBox>().CurrentValue)
-            // {
-            //Itens.useItemtens();
-            //}
-
             var RTarget = TargetSelector.GetTarget(R.Range, DamageType.Mixed);
             if (RTarget == null) return;
             {
@@ -198,7 +193,7 @@ namespace GuTenTak.KogMaw
                 var useR = ModesMenu1["HarassR"].Cast<CheckBox>().CurrentValue;
                 var Rp = R.GetPrediction(RTarget);
                 if (!RTarget.IsValid()) return;
-                if (R.IsInRange(RTarget) && R.IsReady() && useR && !RTarget.IsInvulnerable && Program._Player.ManaPercent >= Program.ModesMenu1["ManaHR"].Cast<Slider>().CurrentValue)
+                if (R.IsInRange(RTarget) && R.IsReady() && useR && !RTarget.IsInvulnerable && Rp.HitChance >= HitChance.High && Program._Player.ManaPercent >= Program.ModesMenu1["ManaHR"].Cast<Slider>().CurrentValue)
                 {
                     if (PlayerInstance.GetBuffCount("kogmawlivingartillerycost") < ModesMenu1["HRStack"].Cast<Slider>().CurrentValue)
                     {
@@ -500,36 +495,6 @@ namespace GuTenTak.KogMaw
                 Player.SetSkinId((int)ModesMenu3["skinId"].Cast<ComboBox>().CurrentValue);
             }
         }
-
-        /*
-        internal static void Dash_OnDash(Obj_AI_Base sender, Dash.DashEventArgs e)
-        {
-            var Target = TargetSelector.GetTarget(Q.Range, DamageType.Physical);
-            var Qp = Q.GetPrediction(Target);
-            if (Qp.HitChance == HitChance.Dashing)
-            {
-                Q.Cast(Qp.CastPosition);
-                Chat.Print("Dash!");
-            }
-        }
-        */
-
-        /*
-        internal static void Dash_OnDash(Obj_AI_Base sender, Dash.DashEventArgs e)
-        {
-            if (ModesMenu1["Snipe"].Cast<CheckBox>().CurrentValue)
-            {
-                var Target = TargetSelector.GetTarget(Q.Range, DamageType.Physical);
-                var Qp = Q.GetPrediction(Target);
-                if (Q.GetPrediction(Target).HitChance >= HitChance.Dashing)
-                {
-                    Q.Cast(Q.GetPrediction(Target).CastPosition);
-                }
-            }
-            Chat.Print("Dash!");
-        }
-        */
-
         internal static void Gapcloser_OnGapCloser(AIHeroClient sender, Gapcloser.GapcloserEventArgs gapcloser)
         {
         }
