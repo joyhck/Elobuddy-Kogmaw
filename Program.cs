@@ -28,6 +28,20 @@ namespace GuTenTak.KogMaw
         private static bool wActive = PlayerInstance.HasBuff("kogmawbioarcanebarrage");
         private static int LastAATick;
 
+        public static AIHeroClient PlayerInstance
+        {
+            get { return Player.Instance; }
+        }
+        private static float HealthPercent()
+        {
+            return (PlayerInstance.Health / PlayerInstance.MaxHealth) * 100;
+        }
+
+        public static AIHeroClient _Player
+        {
+            get { return ObjectManager.Player; }
+        }
+        
         public static bool AutoQ { get; protected set; }
         public static float Manaah { get; protected set; }
         public static object GameEvent { get; private set; }
@@ -61,19 +75,6 @@ namespace GuTenTak.KogMaw
                 {
                     return;
                 }
-                public static AIHeroClient PlayerInstance
-               {
-            get { return Player.Instance; }
-               }
-                private static float HealthPercent()
-               {
-            return (PlayerInstance.Health / PlayerInstance.MaxHealth) * 100;
-               }
-
-              public static AIHeroClient _Player
-              {
-               get { return ObjectManager.Player; }
-              }
  
                 Q = new Spell.Skillshot(SpellSlot.Q, 1000, SkillShotType.Linear, 250, 1650, 70);
                 Q.AllowedCollisionCount = 0;
