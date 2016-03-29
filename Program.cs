@@ -28,20 +28,6 @@ namespace GuTenTak.KogMaw
         private static bool wActive = PlayerInstance.HasBuff("kogmawbioarcanebarrage");
         private static int LastAATick;
 
-        public static AIHeroClient PlayerInstance
-        {
-            get { return Player.Instance; }
-        }
-        private static float HealthPercent()
-        {
-            return (PlayerInstance.Health / PlayerInstance.MaxHealth) * 100;
-        }
-
-        public static AIHeroClient _Player
-        {
-            get { return ObjectManager.Player; }
-        }
-
         public static bool AutoQ { get; protected set; }
         public static float Manaah { get; protected set; }
         public static object GameEvent { get; private set; }
@@ -60,6 +46,19 @@ namespace GuTenTak.KogMaw
 
         static void Game_OnStart(EventArgs args)
         {
+        public static AIHeroClient PlayerInstance
+        {
+            get { return Player.Instance; }
+        }
+        private static float HealthPercent()
+        {
+            return (PlayerInstance.Health / PlayerInstance.MaxHealth) * 100;
+        }
+
+        public static AIHeroClient _Player
+        {
+            get { return ObjectManager.Player; }
+        }
             Game.OnUpdate += Game_OnUpdate;
             Drawing.OnDraw += Game_OnDraw;
             Obj_AI_Base.OnBuffGain += Common.OnBuffGain;
