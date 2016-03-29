@@ -46,19 +46,6 @@ namespace GuTenTak.KogMaw
 
         static void Game_OnStart(EventArgs args)
         {
-        public static AIHeroClient PlayerInstance
-        {
-            get { return Player.Instance; }
-        }
-        private static float HealthPercent()
-        {
-            return (PlayerInstance.Health / PlayerInstance.MaxHealth) * 100;
-        }
-
-        public static AIHeroClient _Player
-        {
-            get { return ObjectManager.Player; }
-        }
             Game.OnUpdate += Game_OnUpdate;
             Drawing.OnDraw += Game_OnDraw;
             Obj_AI_Base.OnBuffGain += Common.OnBuffGain;
@@ -69,11 +56,25 @@ namespace GuTenTak.KogMaw
             // Item
             try
             {
+                
                 if (ChampionName != PlayerInstance.BaseSkinName)
                 {
                     return;
                 }
+                public static AIHeroClient PlayerInstance
+               {
+            get { return Player.Instance; }
+               }
+                private static float HealthPercent()
+               {
+            return (PlayerInstance.Health / PlayerInstance.MaxHealth) * 100;
+               }
 
+              public static AIHeroClient _Player
+              {
+               get { return ObjectManager.Player; }
+              }
+ 
                 Q = new Spell.Skillshot(SpellSlot.Q, 1000, SkillShotType.Linear, 250, 1650, 70);
                 Q.AllowedCollisionCount = 0;
                 W = new Spell.Active(SpellSlot.W, (uint)PlayerInstance.GetAutoAttackRange());
