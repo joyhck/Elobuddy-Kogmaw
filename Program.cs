@@ -24,22 +24,22 @@ namespace GuTenTak.KogMaw
         public static Item Qss = new Item(ItemId.Quicksilver_Sash);
         public static Item Simitar = new Item(ItemId.Mercurial_Scimitar);
         public static Item hextech = new Item(ItemId.Hextech_Gunblade, 700);
-        private static bool IsZombie;
-        private static bool wActive;
-        private static int LastAATick;
+        //private static bool IsZombie;
+        //private static bool wActive;
+        //private static int LastAATick;
 
-        public static AIHeroClient PlayerInstance { get { return Player.Instance; } }
-        private static float HealthPercent() { return (PlayerInstance.Health / PlayerInstance.MaxHealth) * 100; }
+        //public static AIHeroClient PlayerInstance { get { return Player.Instance; } }
+        private static float HealthPercent() { return (Player.Instance.Health / Player.Instance.MaxHealth) * 100; }
         
-        public static bool AutoQ { get; protected set; }
-        public static float Manaah { get; protected set; }
-        public static object GameEvent { get; private set; }
+        //public static bool AutoQ { get; protected set; }
+        //public static float Manaah { get; protected set; }
+        //public static object GameEvent { get; private set; }
 
         public static Spell.Skillshot Q;
         public static Spell.Active W;
         public static Spell.Skillshot E;
         public static Spell.Skillshot R;
-        private static bool siegecount;
+        //private static bool siegecount;
 
         public static void Main(string[] args)
         {
@@ -54,27 +54,22 @@ namespace GuTenTak.KogMaw
             {
                 return;
             }
-            IsZombie = PlayerInstance.HasBuff("kogmawicathiansurprise");
-            wActive = PlayerInstance.HasBuff("kogmawbioarcanebarrage");
+            //IsZombie = PlayerInstance.HasBuff("kogmawicathiansurprise");
+            //wActive = PlayerInstance.HasBuff("kogmawbioarcanebarrage");
             Game.OnUpdate += Game_OnUpdate;
             Drawing.OnDraw += Game_OnDraw;
             Obj_AI_Base.OnBuffGain += Common.OnBuffGain;
-            Game.OnTick += OnTick;
+            Game.OnTick += (EventArgs) => Common.Skinhack();
             Gapcloser.OnGapcloser += Common.Gapcloser_OnGapCloser;
             Game.OnUpdate += Common.zigzag;
+            Obj_AI_Base.OnLevelUp += OnLevelUp;
             SkinBase = Player.Instance.SkinId;
             // Item
             try
             {
-                
-                if (ChampionName != PlayerInstance.BaseSkinName)
-                {
-                    return;
-                }
- 
                 Q = new Spell.Skillshot(SpellSlot.Q, 1000, SkillShotType.Linear, 250, 1650, 70);
                 Q.AllowedCollisionCount = 0;
-                W = new Spell.Active(SpellSlot.W, (uint)PlayerInstance.GetAutoAttackRange());
+                W = new Spell.Active(SpellSlot.W, 720);
                 E = new Spell.Skillshot(SpellSlot.E, 1200, SkillShotType.Linear, 500, 1400, 120);
                 E.AllowedCollisionCount = int.MaxValue;
                 R = new Spell.Skillshot(SpellSlot.R, 1800, SkillShotType.Circular, 1200, int.MaxValue, 120);
@@ -288,11 +283,20 @@ namespace GuTenTak.KogMaw
             }
         }
 
-        public static void OnTick(EventArgs args)
+        public static void OnLevelUp(Obj_AI_Base sender, Obj_AI_BaseLevelUpEventArgs args)
         {
-            W = new Spell.Active(SpellSlot.W, (uint)(565 + 60 + W.Level * 30 + 65));
-            R = new Spell.Skillshot(SpellSlot.R, (uint)(900 + R.Level * 300), SkillShotType.Circular, 1500, int.MaxValue, 225);
-            Common.Skinhack();
+            if (!sender.IsMe || args.Level != 1) return;
+            Game.OnTick += SetSkillshot;
+        }
+
+        public static void SetSkillshot(EventArgs args)
+        {
+            if (Q.Level + W.Level + E.Level + R.Level == Player.Instance.Level)
+            {
+                W = new Spell.Active(SpellSlot.W, (uint)(565 + 60 + W.Level * 30 + 65));
+                R = new Spell.Skillshot(SpellSlot.R, (uint)(900 + R.Level * 300), SkillShotType.Circular, 1500, int.MaxValue, 225);
+                Game.OnTick -= SetSkillshot; //improve fps
+            }
         }
 
     }
