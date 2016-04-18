@@ -24,23 +24,12 @@ namespace GuTenTak.KogMaw
         public static Item Qss = new Item(ItemId.Quicksilver_Sash);
         public static Item Simitar = new Item(ItemId.Mercurial_Scimitar);
         public static Item hextech = new Item(ItemId.Hextech_Gunblade, 700);
-        private static bool IsZombie = PlayerInstance.HasBuff("kogmawicathiansurprise");
-        private static bool wActive = PlayerInstance.HasBuff("kogmawbioarcanebarrage");
+        private static bool IsZombie;
+        private static bool wActive;
         private static int LastAATick;
 
-        public static AIHeroClient PlayerInstance
-        {
-            get { return Player.Instance; }
-        }
-        private static float HealthPercent()
-        {
-            return (PlayerInstance.Health / PlayerInstance.MaxHealth) * 100;
-        }
-
-        public static AIHeroClient _Player
-        {
-            get { return ObjectManager.Player; }
-        }
+        public static AIHeroClient PlayerInstance { get { return Player.Instance; } }
+        private static float HealthPercent() { return (PlayerInstance.Health / PlayerInstance.MaxHealth) * 100; }
         
         public static bool AutoQ { get; protected set; }
         public static float Manaah { get; protected set; }
@@ -52,14 +41,21 @@ namespace GuTenTak.KogMaw
         public static Spell.Skillshot R;
         private static bool siegecount;
 
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            Loading.OnLoadingComplete += Game_OnStart;
+            Loading.OnLoadingComplete += Loading_OnLoadingComplete;
         }
 
 
-        static void Game_OnStart(EventArgs args)
+
+        public static void Loading_OnLoadingComplete(EventArgs args)
         {
+            if (Player.Instance.ChampionName != ChampionName)
+            {
+                return;
+            }
+            IsZombie = PlayerInstance.HasBuff("kogmawicathiansurprise");
+            wActive = PlayerInstance.HasBuff("kogmawbioarcanebarrage");
             Game.OnUpdate += Game_OnUpdate;
             Drawing.OnDraw += Game_OnDraw;
             Obj_AI_Base.OnBuffGain += Common.OnBuffGain;
@@ -188,7 +184,7 @@ namespace GuTenTak.KogMaw
 
             }
 
-            catch (Exception e)
+            catch (Exception)
             {
 
             }
@@ -248,7 +244,7 @@ namespace GuTenTak.KogMaw
                 var ManaAuto = ModesMenu1["ManaAuto"].Cast<Slider>().CurrentValue;
                 Common.KillSteal();
 
-                if (AutoHarass && ManaAuto <= _Player.ManaPercent)
+                if (AutoHarass && ManaAuto <= ObjectManager.Player.ManaPercent)
                     {
                         Common.AutoR();
                     }
