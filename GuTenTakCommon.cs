@@ -50,7 +50,7 @@ namespace GuTenTak.KogMaw
                 if (!RTarget.IsValid()) return;
                 if (R.IsInRange(RTarget) && R.IsReady() && useR && Rp.HitChance >= HitChance.High && !RTarget.IsInvulnerable)
                 {
-                    if (PlayerInstance.GetBuffCount("kogmawlivingartillerycost") < ModesMenu1["CRStack"].Cast<Slider>().CurrentValue && _Player.ManaPercent >= Program.ModesMenu1["ManaCR"].Cast<Slider>().CurrentValue)
+                    if (PlayerInstance.GetBuffCount("kogmawlivingartillerycost") < ModesMenu1["CRStack"].Cast<Slider>().CurrentValue && ObjectManager.Player.ManaPercent >= Program.ModesMenu1["ManaCR"].Cast<Slider>().CurrentValue)
                     {
                         if (ModesMenu1["LogicRn"].Cast<ComboBox>().CurrentValue == 0)
                         {
@@ -86,7 +86,7 @@ namespace GuTenTak.KogMaw
                     if (!QTarget.IsValid()) return;
                     if (Q.IsInRange(QTarget) && Q.IsReady() && useQ && Qp.HitChance >= HitChance.High && !QTarget.IsInvulnerable)
                     {
-                       if (_Player.Mana >= 80)
+                       if (ObjectManager.Player.Mana >= 80)
                         {
                           Q.Cast(Qp.CastPosition);
                         }
@@ -97,7 +97,7 @@ namespace GuTenTak.KogMaw
                 {
                     var useE = ModesMenu1["ComboE"].Cast<CheckBox>().CurrentValue;
                     var Ep = E.GetPrediction(ETarget);
-                    if (E.IsInRange(ETarget) && E.IsReady() && useE && _Player.ManaPercent >= Program.ModesMenu1["ManaCE"].Cast<Slider>().CurrentValue && ObjectManager.Player.IsInAutoAttackRange(ETarget))
+                    if (E.IsInRange(ETarget) && E.IsReady() && useE && ObjectManager.Player.ManaPercent >= Program.ModesMenu1["ManaCE"].Cast<Slider>().CurrentValue && ObjectManager.Player.IsInAutoAttackRange(ETarget))
                     {
                         E.Cast(Ep.CastPosition);
                     }
@@ -164,7 +164,7 @@ namespace GuTenTak.KogMaw
             {
                 var zigzag = R.GetPrediction(zigzagTarget);
                 if (zigzag.HitChance >= HitChance.High && !zigzagTarget.IsInvulnerable && PlayerInstance.GetBuffCount("kogmawlivingartillerycost") < ModesMenu1["CRStack"].Cast<Slider>().CurrentValue 
-                    && _Player.ManaPercent >= Program.ModesMenu1["ManaCR"].Cast<Slider>().CurrentValue)
+                    && ObjectManager.Player.ManaPercent >= Program.ModesMenu1["ManaCR"].Cast<Slider>().CurrentValue)
                 {
                         if (ModesMenu1["LogicRn"].Cast<ComboBox>().CurrentValue == 0)
                         {
@@ -193,7 +193,7 @@ namespace GuTenTak.KogMaw
                 var useR = ModesMenu1["HarassR"].Cast<CheckBox>().CurrentValue;
                 var Rp = R.GetPrediction(RTarget);
                 if (!RTarget.IsValid()) return;
-                if (R.IsInRange(RTarget) && R.IsReady() && useR && !RTarget.IsInvulnerable && Rp.HitChance >= HitChance.High && Program._Player.ManaPercent >= Program.ModesMenu1["ManaHR"].Cast<Slider>().CurrentValue)
+                if (R.IsInRange(RTarget) && R.IsReady() && useR && !RTarget.IsInvulnerable && Rp.HitChance >= HitChance.High && ObjectManager.Player.ManaPercent >= Program.ModesMenu1["ManaHR"].Cast<Slider>().CurrentValue)
                 {
                     if (PlayerInstance.GetBuffCount("kogmawlivingartillerycost") < ModesMenu1["HRStack"].Cast<Slider>().CurrentValue)
                     {
@@ -208,7 +208,7 @@ namespace GuTenTak.KogMaw
                 var useQ = ModesMenu1["HarassQ"].Cast<CheckBox>().CurrentValue;
                 var Qp = Q.GetPrediction(Target);
                 if (!Target.IsValid() && Target == null) return;
-                if (Q.IsInRange(Target) && Q.IsReady() && useQ && Qp.HitChance >= HitChance.High && Program._Player.ManaPercent >= Program.ModesMenu1["ManaHQ"].Cast<Slider>().CurrentValue)
+                if (Q.IsInRange(Target) && Q.IsReady() && useQ && Qp.HitChance >= HitChance.High && ObjectManager.Player.ManaPercent >= Program.ModesMenu1["ManaHQ"].Cast<Slider>().CurrentValue)
                 {
                     Q.Cast(Qp.CastPosition);
                 }
@@ -220,7 +220,7 @@ namespace GuTenTak.KogMaw
         }
         public static void LaneClear()
         {
-            if (Q.IsReady() && ModesMenu2["FarmQ"].Cast<CheckBox>().CurrentValue && Program._Player.ManaPercent >= Program.ModesMenu2["ManaL"].Cast<Slider>().CurrentValue)
+            if (Q.IsReady() && ModesMenu2["FarmQ"].Cast<CheckBox>().CurrentValue && ObjectManager.Player.ManaPercent >= Program.ModesMenu2["ManaL"].Cast<Slider>().CurrentValue)
             {
                 var minions = EntityManager.MinionsAndMonsters.EnemyMinions.Where(t => t.IsEnemy && !t.IsDead && t.IsValid && !t.IsInvulnerable && t.IsInRange(Player.Instance.Position, Q.Range));
                 foreach (var m in minions)
@@ -232,7 +232,7 @@ namespace GuTenTak.KogMaw
                     }
                 }
             }
-            if (R.IsReady() && ModesMenu2["FarmR"].Cast<CheckBox>().CurrentValue && Program._Player.ManaPercent >= Program.ModesMenu2["ManaLR"].Cast<Slider>().CurrentValue)
+            if (R.IsReady() && ModesMenu2["FarmR"].Cast<CheckBox>().CurrentValue && ObjectManager.Player.ManaPercent >= Program.ModesMenu2["ManaLR"].Cast<Slider>().CurrentValue)
             {
                 var minions = EntityManager.MinionsAndMonsters.EnemyMinions.Where(t => t.IsEnemy && !t.IsDead && t.IsValid && !t.IsInvulnerable && t.IsInRange(Player.Instance.Position, Q.Range)).OrderBy(t => t.Health);
                 if (minions.Count() > 2)
@@ -247,7 +247,7 @@ namespace GuTenTak.KogMaw
         }
         public static void JungleClear()
         {
-            if (Q.IsReady() && ModesMenu2["JungleQ"].Cast<CheckBox>().CurrentValue && Program._Player.ManaPercent >= Program.ModesMenu2["ManaJ"].Cast<Slider>().CurrentValue)
+            if (Q.IsReady() && ModesMenu2["JungleQ"].Cast<CheckBox>().CurrentValue && ObjectManager.Player.ManaPercent >= Program.ModesMenu2["ManaJ"].Cast<Slider>().CurrentValue)
             {
                 var minions = EntityManager.MinionsAndMonsters.GetJungleMonsters(Player.Instance.Position, Q.Range).Where(t => !t.IsDead && t.IsValid && !t.IsInvulnerable);
                 foreach (var m in minions)
@@ -259,7 +259,7 @@ namespace GuTenTak.KogMaw
                         }
                 }
             }
-            if (R.IsReady() && ModesMenu2["JungleR"].Cast<CheckBox>().CurrentValue && Program._Player.ManaPercent >= Program.ModesMenu2["ManaJR"].Cast<Slider>().CurrentValue)
+            if (R.IsReady() && ModesMenu2["JungleR"].Cast<CheckBox>().CurrentValue && ObjectManager.Player.ManaPercent >= Program.ModesMenu2["ManaJR"].Cast<Slider>().CurrentValue)
             {
                 var minions = EntityManager.MinionsAndMonsters.GetJungleMonsters(Player.Instance.Position, Q.Range).Where(t => !t.IsDead && t.IsValid && !t.IsInvulnerable);
                 if (minions.Count() > 0)
@@ -280,13 +280,13 @@ namespace GuTenTak.KogMaw
                 if (ETarget == null) return;
                 {
                     var Ep = E.GetPrediction(ETarget);
-                    if (E.IsInRange(ETarget) && E.IsReady() && _Player.ManaPercent >= Program.ModesMenu3["ManaFlR"].Cast<Slider>().CurrentValue)
+                    if (E.IsInRange(ETarget) && E.IsReady() && ObjectManager.Player.ManaPercent >= Program.ModesMenu3["ManaFlR"].Cast<Slider>().CurrentValue)
                     {
                         E.Cast(Ep.CastPosition);
                     }
                 }
             }
-            if (ModesMenu3["FleeR"].Cast<CheckBox>().CurrentValue && Program._Player.ManaPercent <= Program.ModesMenu3["ManaFlR"].Cast<Slider>().CurrentValue)
+            if (ModesMenu3["FleeR"].Cast<CheckBox>().CurrentValue && ObjectManager.Player.ManaPercent <= Program.ModesMenu3["ManaFlR"].Cast<Slider>().CurrentValue)
             {
                 if (ObjectManager.Player.CountEnemiesInRange(400) == 0)
                 {
