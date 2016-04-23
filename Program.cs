@@ -97,7 +97,7 @@ namespace GuTenTak.KogMaw
                 ModesMenu1.Add("LogicRn", new ComboBox(" Use R Enemy Health % <= ", 1, "100%", "55%", "30%"));
                 ModesMenu1.Add("ManaCE", new Slider("Use E Mana %", 30));
                 ModesMenu1.Add("ManaCR", new Slider("Use R Mana %", 80));
-                ModesMenu1.Add("CRStack", new Slider("Combo R stack limit", 3, 1, 6));
+                ModesMenu1.Add("CRStack", new Slider("Combo R stack limit", 3, 1, 10));
                 ModesMenu1.AddSeparator();
                 ModesMenu1.AddLabel("AutoHarass Configs");
                 ModesMenu1.Add("AutoHarass", new CheckBox("Use R on AutoHarass", false));
