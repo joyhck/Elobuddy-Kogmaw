@@ -60,7 +60,7 @@ namespace GuTenTak.KogMaw
                         {
                             R.Cast(Rp.CastPosition);
                         }
-                        if (RTarget.HealthPercent <= 30 && ModesMenu1["LogicRn"].Cast<ComboBox>().CurrentValue == 2)
+                        if (RTarget.HealthPercent <= 35 && ModesMenu1["LogicRn"].Cast<ComboBox>().CurrentValue == 2)
                         {
                             R.Cast(Rp.CastPosition);
                         }
