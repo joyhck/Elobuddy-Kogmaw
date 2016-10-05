@@ -11,7 +11,7 @@ namespace GuTenTak.KogMaw
         public static float QCalc(Obj_AI_Base target)
         {
             return _Player.CalculateDamageOnUnit(target, DamageType.Physical,
-                (float)(new[] { 0, 80, 130, 180, 230, 285 }[Program.Q.Level] + 0.5f * _Player.FlatMagicDamageMod
+                (float)(new[] { 0, 80, 130, 180, 230, 280 }[Program.Q.Level] + 0.5f * _Player.FlatMagicDamageMod
                     ));
         }
         public static float R1Calc(Obj_AI_Base target)
