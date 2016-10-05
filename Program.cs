@@ -69,10 +69,10 @@ namespace GuTenTak.KogMaw
             {
                 Q = new Spell.Skillshot(SpellSlot.Q, 1000, SkillShotType.Linear, 250, 1650, 70);
                 Q.AllowedCollisionCount = 0;
-                W = new Spell.Active(SpellSlot.W, 720);
+                W = new Spell.Active(SpellSlot.W, 750);
                 E = new Spell.Skillshot(SpellSlot.E, 1200, SkillShotType.Linear, 500, 1400, 120);
                 E.AllowedCollisionCount = int.MaxValue;
-                R = new Spell.Skillshot(SpellSlot.R, 1800, SkillShotType.Circular, 1200, int.MaxValue, 120);
+                R = new Spell.Skillshot(SpellSlot.R, 1200, SkillShotType.Circular, 1200, int.MaxValue, 120);
                 R.AllowedCollisionCount = int.MaxValue;
 
 
@@ -293,7 +293,7 @@ namespace GuTenTak.KogMaw
         {
             if (Q.Level + W.Level + E.Level + R.Level == Player.Instance.Level)
             {
-                W = new Spell.Active(SpellSlot.W, (uint)(565 + 60 + W.Level * 30 + 65));
+                W = new Spell.Active(SpellSlot.W, (uint)(565 + 60 + W.Level * 20 + 105));
                 R = new Spell.Skillshot(SpellSlot.R, (uint)(900 + R.Level * 300), SkillShotType.Circular, 1500, int.MaxValue, 225);
                 Game.OnTick -= SetSkillshot; //improve fps
             }
