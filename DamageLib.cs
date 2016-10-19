@@ -8,6 +8,7 @@ namespace GuTenTak.KogMaw
     internal class DamageLib
     {
         private static readonly AIHeroClient _Player = ObjectManager.Player;
+        private static readonly float[] RDmg = new float []{ 0, 100, 140, 180 };
         public static float QCalc(Obj_AI_Base target)
         {
             return _Player.CalculateDamageOnUnit(target, DamageType.Magical,
@@ -17,14 +18,15 @@ namespace GuTenTak.KogMaw
         public static float R1Calc(Obj_AI_Base target)
         {
             return _Player.CalculateDamageOnUnit(target, DamageType.Magical,
-                (float)(new[] { 0, 100, 140, 180 }[Program.R.Level] + 0.65f * _Player.FlatPhysicalDamageMod + 0.25f * _Player.FlatMagicDamageMod
-                    ));
+                RDmg[Program.R.Level] + 0.65f * _Player.FlatPhysicalDamageMod + 0.25f * _Player.FlatMagicDamageMod
+                    );
         }
         public static float R2Calc(Obj_AI_Base target)
         {
+            float ch = 100f - target.HealthPercent;
             return _Player.CalculateDamageOnUnit(target, DamageType.Magical,
-                (float)(new[] { 0, 140, 220, 300 }[Program.R.Level] + 1.3f * _Player.FlatPhysicalDamageMod + 0.5f * _Player.FlatMagicDamageMod
-                    ));
+                RDmg[Program.R.Level] + RDmg[Program.R.Level] / 120f * ch + (0.65f + 0.65f / 120f * ch ) * _Player.FlatPhysicalDamageMod + (0.25f + 0.25f / 120f * ch) * _Player.FlatMagicDamageMod
+                    );
         }
         public static float R3Calc(Obj_AI_Base target)
         {
