@@ -17,7 +17,7 @@ namespace GuTenTak.KogMaw
         public static float R1Calc(Obj_AI_Base target)
         {
             return _Player.CalculateDamageOnUnit(target, DamageType.Physical,
-                (float)(new[] { 0, 70, 110, 150 }[Program.R.Level] + 0.65f * _Player.FlatPhysicalDamageMod + 0.25f * _Player.FlatMagicDamageMod
+                (float)(new[] { 0, 100, 140, 180 }[Program.R.Level] + 0.65f * _Player.FlatPhysicalDamageMod + 0.25f * _Player.FlatMagicDamageMod
                     ));
         }
         public static float R2Calc(Obj_AI_Base target)
