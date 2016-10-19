@@ -94,14 +94,14 @@ namespace GuTenTak.KogMaw
                 ModesMenu1.Add("ComboW", new CheckBox("Use W on Combo", true));
                 ModesMenu1.Add("ComboE", new CheckBox("Use E on Combo", true));
                 ModesMenu1.Add("ComboR", new CheckBox("Use R on Combo", true));
-                ModesMenu1.Add("LogicRn", new ComboBox(" Use R Enemy Health % <= ", 1, "100%", "50%", "25%"));
+                ModesMenu1.Add("LogicRn", new ComboBox(" Use R Enemy Health % < ", 1, "100%", "60%", "40%"));
                 ModesMenu1.Add("ManaCE", new Slider("Use E Mana %", 30));
                 ModesMenu1.Add("ManaCR", new Slider("Use R Mana %", 80));
                 ModesMenu1.Add("CRStack", new Slider("Combo R stack limit", 3, 1, 10));
                 ModesMenu1.AddSeparator();
                 ModesMenu1.AddLabel("AutoHarass Configs");
                 ModesMenu1.Add("AutoHarass", new CheckBox("Use R on AutoHarass", false));
-                ModesMenu1.Add("ARStack", new Slider("Auto R stack limit", 2, 1, 6));
+                ModesMenu1.Add("ARStack", new Slider("Auto R stack limit", 2, 1, 10));
                 ModesMenu1.Add("ManaAuto", new Slider("Mana %", 70));
 
                 ModesMenu1.AddLabel("Harass Configs");
@@ -110,7 +110,7 @@ namespace GuTenTak.KogMaw
                 ModesMenu1.Add("HarassR", new CheckBox("Use R on Harass", true));
                 ModesMenu1.Add("ManaHE", new Slider("Use E Mana %", 60));
                 ModesMenu1.Add("ManaHR", new Slider("Use R Mana %", 60));
-                ModesMenu1.Add("HRStack", new Slider("Harass R stack limit", 1, 1, 6));
+                ModesMenu1.Add("HRStack", new Slider("Harass R stack limit", 1, 1, 10));
                 ModesMenu1.AddSeparator();
                 ModesMenu1.AddLabel("Kill Steal Configs");
                 ModesMenu1.Add("KS", new CheckBox("Use KillSteal", true));
@@ -123,20 +123,20 @@ namespace GuTenTak.KogMaw
                 ModesMenu2.Add("FarmQ", new CheckBox("Use Q on LaneClear", true));
                 ModesMenu2.Add("ManaLR", new Slider("Mana %", 40));
                 ModesMenu2.Add("FarmR", new CheckBox("Use R on LaneClear", true));
-                ModesMenu2.Add("FRStack", new Slider("LaneClear R stack limit", 1, 1, 6));
+                ModesMenu2.Add("FRStack", new Slider("LaneClear R stack limit", 1, 1, 10));
                 ModesMenu2.AddLabel("Jungle Clear Config");
                 ModesMenu2.Add("ManaJ", new Slider("Mana %", 40));
                 ModesMenu2.Add("JungleQ", new CheckBox("Use Q on JungleClear", true));
                 ModesMenu2.Add("ManaJR", new Slider("Mana %", 40));
                 ModesMenu2.Add("JungleR", new CheckBox("Use R on JungleClear", true));
-                ModesMenu2.Add("JRStack", new Slider("JungleClear R stack limit", 2, 1, 6));
+                ModesMenu2.Add("JRStack", new Slider("JungleClear R stack limit", 2, 1, 10));
 
                 ModesMenu3 = Menu.AddSubMenu("Misc", "Modes3KogMaw");
                 ModesMenu3.AddLabel("Flee Configs");
                 ModesMenu3.Add("FleeR", new CheckBox("Use R on Flee", true));
                 ModesMenu3.Add("FleeE", new CheckBox("Use E on Flee", true));
                 ModesMenu3.Add("ManaFlR", new Slider("R Mana %", 35));
-                ModesMenu3.Add("FlRStack", new Slider("Flee R stack limit", 2, 1, 6));
+                ModesMenu3.Add("FlRStack", new Slider("Flee R stack limit", 2, 1, 10));
 
                 ModesMenu3.AddLabel("Item Usage on Combo");
                 ModesMenu3.Add("useYoumuu", new CheckBox("Use Youmuu", true));
