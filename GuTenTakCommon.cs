@@ -56,11 +56,11 @@ namespace GuTenTak.KogMaw
                         {
                             R.Cast(Rp.CastPosition);
                         }
-                        if (RTarget.HealthPercent <= 50 && ModesMenu1["LogicRn"].Cast<ComboBox>().CurrentValue == 1)
+                        if (RTarget.HealthPercent < 60 && ModesMenu1["LogicRn"].Cast<ComboBox>().CurrentValue == 1)
                         {
                             R.Cast(Rp.CastPosition);
                         }
-                        if (RTarget.HealthPercent <= 25 && ModesMenu1["LogicRn"].Cast<ComboBox>().CurrentValue == 2)
+                        if (RTarget.HealthPercent < 40 && ModesMenu1["LogicRn"].Cast<ComboBox>().CurrentValue == 2)
                         {
                             R.Cast(Rp.CastPosition);
                         }
@@ -170,11 +170,11 @@ namespace GuTenTak.KogMaw
                         {
                             R.Cast(zigzag.CastPosition);
                         }
-                        if (zigzagTarget.HealthPercent <= 50 && ModesMenu1["LogicRn"].Cast<ComboBox>().CurrentValue == 1)
+                        if (zigzagTarget.HealthPercent < 60 && ModesMenu1["LogicRn"].Cast<ComboBox>().CurrentValue == 1)
                         {
                             R.Cast(zigzag.CastPosition);
                         }
-                        if (zigzagTarget.HealthPercent <= 25 && ModesMenu1["LogicRn"].Cast<ComboBox>().CurrentValue == 2)
+                        if (zigzagTarget.HealthPercent < 40 && ModesMenu1["LogicRn"].Cast<ComboBox>().CurrentValue == 2)
                         {
                             R.Cast(zigzag.CastPosition);
                         }
@@ -520,7 +520,7 @@ namespace GuTenTak.KogMaw
                             }
                         }
 
-                        if (enemy.HealthPercent <= 20 && DamageLib.R3Calc(enemy) >= enemy.Health)
+                        if (enemy.HealthPercent < 40 && DamageLib.R3Calc(enemy) >= enemy.Health)
                         {
                             var Rp = R.GetPrediction(enemy);
                             if (R.IsReady() && R.IsInRange(enemy) && Program.ModesMenu1["KR"].Cast<CheckBox>().CurrentValue && Rp.HitChance >= HitChance.High && !enemy.IsInvulnerable)
@@ -529,7 +529,7 @@ namespace GuTenTak.KogMaw
                             }
                         }
 
-                        if (enemy.HealthPercent <= 30 && DamageLib.R2Calc(enemy) >= enemy.Health)
+                        if (enemy.HealthPercent < 100 && DamageLib.R2Calc(enemy) >= enemy.Health)
                         {
                             var Rp = R.GetPrediction(enemy);
                             if (R.IsReady() && R.IsInRange(enemy) && Program.ModesMenu1["KR"].Cast<CheckBox>().CurrentValue && Rp.HitChance >= HitChance.High && !enemy.IsInvulnerable)
