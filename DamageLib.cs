@@ -10,25 +10,25 @@ namespace GuTenTak.KogMaw
         private static readonly AIHeroClient _Player = ObjectManager.Player;
         public static float QCalc(Obj_AI_Base target)
         {
-            return _Player.CalculateDamageOnUnit(target, DamageType.Physical,
+            return _Player.CalculateDamageOnUnit(target, DamageType.Magical,
                 (float)(new[] { 0, 80, 130, 180, 230, 280 }[Program.Q.Level] + 0.5f * _Player.FlatMagicDamageMod
                     ));
         }
         public static float R1Calc(Obj_AI_Base target)
         {
-            return _Player.CalculateDamageOnUnit(target, DamageType.Physical,
+            return _Player.CalculateDamageOnUnit(target, DamageType.Magical,
                 (float)(new[] { 0, 100, 140, 180 }[Program.R.Level] + 0.65f * _Player.FlatPhysicalDamageMod + 0.25f * _Player.FlatMagicDamageMod
                     ));
         }
         public static float R2Calc(Obj_AI_Base target)
         {
-            return _Player.CalculateDamageOnUnit(target, DamageType.Physical,
+            return _Player.CalculateDamageOnUnit(target, DamageType.Magical,
                 (float)(new[] { 0, 140, 220, 300 }[Program.R.Level] + 1.3f * _Player.FlatPhysicalDamageMod + 0.5f * _Player.FlatMagicDamageMod
                     ));
         }
         public static float R3Calc(Obj_AI_Base target)
         {
-            return _Player.CalculateDamageOnUnit(target, DamageType.Physical,
+            return _Player.CalculateDamageOnUnit(target, DamageType.Magical,
                 (float)(new[] { 0, 200, 280, 360 }[Program.R.Level] + 1.3f * _Player.FlatPhysicalDamageMod + 0.5f * _Player.FlatMagicDamageMod
                     ));
         }
